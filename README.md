@@ -1,15 +1,6 @@
 # Friendship Server  
   
 A simple Flask server for a friend who needs to pay taxes.  
-  
-Two endpoints:  
-`POST /transactions`  
-- Expects a csv file with transaction data  
-  
-`GET /report`  
-- Returns the expenses, gross revenue, and net revenue associated with the transactions  
-  
-Server runs on port `5000`.
 
 ## Prerequisites  
   
@@ -22,10 +13,12 @@ Server runs on port `5000`.
 Run the following commands from your machine to start the server:  
   
 ```bash
-git clone repo
-cd repo
+git clone git@github.com:fischk5/friendship-server.git
+cd friendship-server
 sh run_server.sh
 ```  
+  
+Alternatively, run `sh run_server.sh` from the root of the project.
   
 **Using the service with test data**  
 From the project directory, run the following command to submit test data to the service:  
@@ -75,9 +68,16 @@ Response (prettified):
   
 ## Design  
   
-Friendship Server receives a CSV file, stores it locally on the server (`data.csv`), and processes it into a json report for expenses, gross revenue, and net revenue (`report.json`).  
+Friendship Server receives a CSV file, stores it locally on the server (`data.csv`), and processes it into a json report for expenses, gross revenue, and net revenue (`report.json`). Data processing occurs asynchronously, and is available at the `/report` endpoint when ready.  
   
-Data processing occurs asynchronously, and is available at the `/report` endpoint when ready.
+Two endpoints:  
+`POST /transactions`  
+- Expects a csv file with transaction data  
+  
+`GET /report`  
+- Returns the expenses, gross revenue, and net revenue associated with the transactions  
+  
+Server runs on port `5000`.
   
 ## Assumptions  
   
@@ -106,3 +106,4 @@ Example Data:
 - Improve threading reliability and stability  
 - Build a more robust file naming convention (not needed if a database id value is available)  
 - Add unit tests to the `ExpensesProcesser` class  
+- Test more thoroughly on MacOS and Linux  
