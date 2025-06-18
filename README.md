@@ -98,6 +98,8 @@ Example Data:
   
 ## Future Improvements  
   
+*These address both future needs and current shortcomings with the codebase*  
+  
 - Add file security and type checking to the CSV values  
 - More robust API method handling for failures, required file formats, edge cases  
 - Add event-based processing  
